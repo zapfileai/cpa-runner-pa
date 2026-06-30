@@ -16,9 +16,9 @@ const escapeCSV = (val) => {
 
 (async () => {
   const batchNum = parseInt(process.env.BATCH_NUM, 10);
-  if (!batchNum || !batches[batchNum]) {
-    console.error(`Invalid BATCH_NUM: ${process.env.BATCH_NUM}. Must be 1, 2, 3, or 4.`);
-    process.exit(1);
+  if (!batchNum || !batches[batchNum] || batches[batchNum].length === 0) {
+    console.log(`Batch ${batchNum} is empty or out of range — nothing to do.`);
+    process.exit(0);
   }
 
   const cities = batches[batchNum];
